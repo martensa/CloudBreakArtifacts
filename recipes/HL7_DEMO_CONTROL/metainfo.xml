@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>HL7_DEMO_CONTROL</name>
+            <displayName>HL7 Demo Control</displayName>
+            <comment>Utility to start and stop HL7 Demo</comment>
+            <version>0.1.0</version>
+            <components>
+                <component>
+                    <name>HL7_DEMO_CONTROL</name>
+                    <displayName>HL7 Demo Control</displayName>
+                    <category>MASTER</category>
+                    <cardinality>1</cardinality>
+                    <commandScript>
+                        <script>scripts/master.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>600</timeout>
+                    </commandScript>
+        		</component>
+            </components>
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>any</osFamily>
+                </osSpecific>
+            </osSpecifics>
+            <configuration-dependencies>
+        		<config-type>control-config</config-type>
+      	    </configuration-dependencies>
+            <restartRequiredAfterChange>false</restartRequiredAfterChange>
+        </service>
+    </services>
+</metainfo>
