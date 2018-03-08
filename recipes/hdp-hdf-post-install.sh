@@ -681,6 +681,12 @@ cp -Rf $ROOT_PATH/northcentral_hackathon/CloudBreakArtifacts/recipes/ALARM_FATIG
 echo "*********************************Install TWITTER_DEMO_CONTROL service..."
 cp -Rf $ROOT_PATH/CloudBreakArtifacts/recipes/TWITTER_DEMO_CONTROL /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/
 
+echo "*********************************Install HL7_DEMO_CONTROL service..."
+cp -Rf $ROOT_PATH/CloudBreakArtifacts/recipes/HL7_DEMO_CONTROL /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/
+
+echo "*********************************Install MARKET_BASKET_DEMO_CONTROL service..."
+cp -Rf $ROOT_PATH/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/
+
 echo "*********************************Install HDF Management Pack..."
 instalHDFManagementPack 
 sleep 2
