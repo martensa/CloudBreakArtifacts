@@ -9,10 +9,10 @@
     <description>Directory under which demo control utility will be installed</description>
   </property> 
 
-  <property require-input="true">
+  <!-- <property require-input="true">
     <name>marketbasket.download_url</name>
     <value>https://github.com/hortonworks/SE-demo.git</value>
     <description>Online location to download Market Basket Demo</description>
-  </property> 
+  </property> -->
   
 </configuration>
