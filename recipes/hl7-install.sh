@@ -443,7 +443,7 @@ initializeSolr () {
   cd
 
 
-  cat <<EOF > /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf/stopwords.txt
+  cat <<EOT >> /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf/stopwords.txt
   adjustments
   Admitted
   because
@@ -472,7 +472,7 @@ initializeSolr () {
   visit
   Visited
   was
-  EOF
+  EOT
   
   /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z $AMBARI_HOST:2181
   /opt/lucidworks-hdpsearch/solr/bin/solr create -c hl7_messages -d data_driven_schema_configs -s 1 -rf 1 
