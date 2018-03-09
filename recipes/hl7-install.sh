@@ -443,36 +443,7 @@ initializeSolr () {
   cd
 
 
-  cat <<EOT >> /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf/stopwords.txt
-  adjustments
-  Admitted
-  because
-  blood
-  changes
-  complained
-  Discharged
-  Discussed
-  Drew
-  Evaluated
-  for
-  hospital
-  me
-  medication
-  of
-  patient
-  Performed
-  Prescribed
-  Reason
-  Recommended
-  Started
-  tests
-  The
-  to
-  treatment
-  visit
-  Visited
-  was
-  EOT
+  echo "adjustments\nAdmitted\nbecause\nblood\nchanges\ncomplained\nDischarged\nDiscussed\nDrew\nEvaluated\nfor\nhospital\nme\nmedication\nof\npatient\nPerformed\nPrescribed\nReason\nRecommended\nStarted\ntests\nThe\nto\ntreatment\nvisit\nVisited\nwas" >> /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf/stopwords.txt
   
   /opt/lucidworks-hdpsearch/solr/bin/solr start -c -z $AMBARI_HOST:2181
   /opt/lucidworks-hdpsearch/solr/bin/solr create -c hl7_messages -d data_driven_schema_configs -s 1 -rf 1 
