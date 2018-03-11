@@ -2,7 +2,7 @@ import sys, os, pwd, signal, time, shutil
 from subprocess import *
 from resource_management import *
 
-class MarketBasket(Script):
+class DemoControl(Script):
   def install(self, env):
     self.configure(env)
     import params
@@ -15,18 +15,18 @@ class MarketBasket(Script):
   def start(self, env):
     self.configure(env)
     import params
-    Execute('touch /tmp/market_basket.pid')
+    Execute( "touch /tmp/market_master.pid" )	 
 
   def stop(self, env):
     self.configure(env)
     import params
-    Execute('rm -rf /tmp/market_basket.pid')
+    Execute( "rm -f /tmp/market_master.pid" ) 
 
   def status(self, env):
     import params
     env.set_params(params)
-    market_basket_pid_file = '/tmp/market_basket.pid'
-    Execute(format('cat {market_basket_pid_file}'))
+    market_master_pid_file="/tmp/market_master.pid"
+    Execute( format("cat {market_master_pid_file}") )
 
 
   def configure(self, env):
@@ -34,4 +34,4 @@ class MarketBasket(Script):
     env.set_params(params)
 
 if __name__ == "__main__":
-  MarketBasket().execute()
+  DemoControl().execute()
