@@ -10,7 +10,7 @@ class DemoControl(Script):
     if not os.path.exists(params.install_dir): 
         os.makedirs(params.install_dir)
     os.chdir(params.install_dir)
-    Execute('params.install_dir + /CloudBreakArtifacts/recipes/market-basket-post-install.sh')
+    Execute(params.install_dir + '/CloudBreakArtifacts/recipes/market-basket-post-install.sh')
 
   def start(self, env):
     self.configure(env)
