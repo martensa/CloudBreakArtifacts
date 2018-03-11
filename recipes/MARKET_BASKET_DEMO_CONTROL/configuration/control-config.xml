@@ -4,7 +4,7 @@
 <configuration>
 
   <property require-input="true">
-    <name>marketbasket.install_dir</name>
+    <name>democontrol.install_dir</name>
     <value>/root</value>
     <description>Directory under which demo control utility will be installed</description>
   </property> 
