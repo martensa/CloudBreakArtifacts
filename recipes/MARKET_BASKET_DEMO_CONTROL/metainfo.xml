@@ -3,14 +3,14 @@
     <schemaVersion>2.0</schemaVersion>
     <services>
         <service>
-            <name>Market Basket Demo</name>
-            <displayName>Market Basket Demo</displayName>
+            <name>MARKET_BASKET_DEMO_CONTROL</name>
+            <displayName>Market Basket Demo Control</displayName>
             <comment>Utility to start and stop Market Basket Demo</comment>
             <version>0.1.0</version>
             <components>
                 <component>
-                    <name>Market Basket Demo</name>
-                    <displayName>Market Basket Demo</displayName>
+                    <name>MARKET_BASKET_DEMO_CONTROL</name>
+                    <displayName>Market Basket Demo Control</displayName>
                     <category>MASTER</category>
                     <cardinality>1</cardinality>
                     <commandScript>
