@@ -488,7 +488,7 @@ createStormView
 echo "********************************* Initializing Solr"
 initializeSolr
 echo "********************************* Deploying Nifi Template"
-deployTemplateToNifi $ROOT_PATH//CloudBreakArtifacts/recipes/HL7_DEMO_CONTROLL/demofiles/Send_HL7_Messages_to_Solr.xml HL7-Demo
+deployTemplateToNifi $ROOT_PATH//CloudBreakArtifacts/recipes/HL7_DEMO_CONTROL/demofiles/Send_HL7_Messages_to_Solr.xml HL7-Demo
 echo "********************************* Configuring Nifi Template"
 configureNifiTempate
 
