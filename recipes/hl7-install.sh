@@ -432,6 +432,14 @@ createStormView () {
 
 }
 
+startGenerator () {
+  mkdir -p /var/ftp/pub
+  cp $ROOT_PATH//CloudBreakArtifacts/recipes/HL7_DEMO_CONTROL/demofiles/hl7-generator-1.0-SNAPSHOT-shaded.jar /var/ftp/pub
+  cd /var/ftp/pub
+  mkdir -p /tmp/hl7-messages/
+  watch -n0 /usr/jdk64/jdk1.8.0_77/jre/bin/java -cp /var/ftp/pub/hl7-generator-1.0-SNAPSHOT-shaded.jar com.hortonworks.example.Main 10 /tmp/hl7-messages
+}
+
 initializeSolr () {
   cd /opt/lucidworks-hdpsearch/solr/server/solr/configsets/data_driven_schema_configs/conf
   mv -f solrconfig.xml solrconfig_bk.xml
@@ -485,6 +493,8 @@ echo "********************************* Capturing Service Endpoint in the Enviro
 captureEnvironment
 echo "********************************* Create Storm View"
 createStormView
+echo "********************************* Start Generator"
+startGenerator
 echo "********************************* Initializing Solr"
 initializeSolr
 echo "********************************* Deploying Nifi Template"
