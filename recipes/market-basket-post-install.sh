@@ -315,7 +315,7 @@ handleGroupPorts (){
 
 createHDFSDirectories () {
   unzip /root/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL/demofiles/OnlineRetail.txt.zip
-  cp /root/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL/demofiles/OnlineRetail.txt /tmp/
+  cp OnlineRetail.txt /tmp/
   sudo -u hdfs hadoop fs -mkdir /user/root
   sudo -u hdfs hadoop fs -mkdir /user/root/retail
   sudo -u hdfs hadoop fs -mkdir /user/root/retail/retailsalesraw
