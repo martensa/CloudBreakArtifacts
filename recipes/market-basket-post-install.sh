@@ -321,6 +321,7 @@ createHDFSDirectories () {
   sudo -u hdfs hadoop fs -mkdir /user/root/retail/retailsalesraw
   sudo -u hdfs hadoop fs -chown -R root /user/root
   sudo -u hdfs hadoop fs -put /tmp/OnlineRetail.txt /user/root/retail/retailsalesraw
+  sudo -u hdfs hadoop fs -put /tmp/OnlineRetail.txt /user/root/retail
 }
 
 runPigScripts () {
