@@ -315,13 +315,13 @@ handleGroupPorts (){
 
 createHDFSDirectories () {
   unzip /root/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL/demofiles/OnlineRetail.txt.zip
-  cp OnlineRetail.txt /tmp/
+  cp OnlineRetail.txt /root/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL/demofiles/
   sudo -u hdfs hadoop fs -mkdir /user/root
   sudo -u hdfs hadoop fs -mkdir /user/root/retail
   sudo -u hdfs hadoop fs -mkdir /user/root/retail/retailsalesraw
   sudo -u hdfs hadoop fs -chown -R root /user/root
-  sudo -u hdfs hadoop fs -put /tmp/OnlineRetail.txt /user/root/retail/retailsalesraw
-  sudo -u hdfs hadoop fs -put /tmp/OnlineRetail.txt /user/root/retail
+  sudo -u hdfs hadoop fs -put /root/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL/demofiles/OnlineRetail.txt /user/root/retail/retailsalesraw
+  sudo -u hdfs hadoop fs -put /root/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL/demofiles/OnlineRetail.txt /user/root/retail
 }
 
 runPigScripts () {
