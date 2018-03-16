@@ -497,6 +497,8 @@ echo "*********************************HADOOP_USER_NAME set to HDFS"
 
 echo "********************************* Capturing Service Endpoint in the Environment"
 captureEnvironment
+echo "********************************* Installing Utilities"
+installUtils
 echo "********************************* Create Storm View"
 createStormView
 echo "********************************* Initializing Solr"
