@@ -778,22 +778,22 @@ fi
 
 sleep 2
 
-installSolrService
+#installSolrService
 
-SOLR_STATUS=$(getServiceStatus SOLR)
-echo "*********************************Checking SOLR status..."
-if ! [[ $SOLR_STATUS == STARTED || $SOLR_STATUS == INSTALLED ]]; then
-        echo "*********************************SOLR is in a transitional state, waiting..."
-        waitForService SOLR
-        echo "*********************************SOLR has entered a ready state..."
-fi
+#SOLR_STATUS=$(getServiceStatus SOLR)
+#echo "*********************************Checking SOLR status..."
+#if ! [[ $SOLR_STATUS == STARTED || $SOLR_STATUS == INSTALLED ]]; then
+#        echo "*********************************SOLR is in a transitional state, waiting..."
+#        waitForService SOLR
+#        echo "*********************************SOLR has entered a ready state..."
+#fi
 
-sleep 2
-if [[ $SOLR_STATUS == INSTALLED ]]; then
-        startService SOLR
-else
-        echo "*********************************REGISTRY Service Started..."
-fi
+#sleep 2
+#if [[ $SOLR_STATUS == INSTALLED ]]; then
+#        startService SOLR
+#else
+#        echo "*********************************REGISTRY Service Started..."
+#fi
 
 sleep 2
 
