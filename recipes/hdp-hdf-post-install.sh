@@ -384,6 +384,7 @@ installNifiService () {
        	done
 }
 
+
 waitForNifiServlet () {
        	LOOPESCAPE="false"
        	until [ "$LOOPESCAPE" == true ]; do
@@ -397,6 +398,33 @@ waitForNifiServlet () {
        		echo "*********************************NIFI Servlet Status... " $TASKSTATUS
        		sleep 2
        	done
+}
+
+installSolrService() {
+        echo "*********************************Creating SOLR service..."
+        # Create Druid service
+        curl -u admin:admin -H "X-Requested-By:ambari" -i -X POST http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER_NAME/services/SOLR
+
+        sleep 2
+
+        if [ -z $TASKID ]; then
+          until ! [ -z $TASKID ]; do
+            TASKID=$(curl -u admin:admin -H "X-Requested-By:ambari" -i -X PUT -d '{"RequestInfo": {"context" :"Install Solr"}, "Body": {"ServiceInfo": {"maintenance_state" : "OFF", "state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER_NAME/services/SOLR | grep "id" | grep -Po '([0-9]+)')
+            echo "*********************************AMBARI TaskID " $TASKID
+          done
+        fi
+        
+        echo "*********************************AMBARI TaskID " $TASKID
+        sleep 2
+        LOOPESCAPE="false"
+        until [ "$LOOPESCAPE" == true ]; do
+                TASKSTATUS=$(curl -u admin:admin -X GET http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER_NAME/requests/$TASKID | grep "request_status" | grep -Po '([A-Z]+)')
+                if [ "$TASKSTATUS" == COMPLETED ]; then
+                        LOOPESCAPE="true"
+                fi
+                echo "*********************************Task Status" $TASKSTATUS
+                sleep 2
+        done
 }
 
 installDruidService () {
@@ -534,6 +562,17 @@ ambari-server install-mpack --mpack=hdf-ambari-mpack-3.0.1.1-5.tar.gz --verbose
 	ambari-server restart
 	waitForAmbari
 	sleep 2
+}
+
+installHDPSearchManagementPack () {
+  wget http://public-repo-1.hortonworks.com/HDP-SOLR/hdp-solr-ambari-mp/solr-service-mpack-2.2.9.tar.gz
+
+  ambari-server install-mpack --mpack=solr-service-mpack-2.2.9.tar.gz
+
+  sleep 2
+  ambari-server restart
+  waitForAmbari
+  sleep 2
 }
 
 getHostByPosition (){
@@ -689,6 +728,9 @@ cp -Rf $ROOT_PATH/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL /var/li
 
 echo "*********************************Install HDF Management Pack..."
 instalHDFManagementPack 
+
+echo "*********************************Install HDP Search Management Pack..."
+installHDPSearchManagementPack
 sleep 2
 
 #echo "*********************************Configure Ambari Repos"
@@ -735,6 +777,26 @@ else
 fi
 
 sleep 2
+
+installSolrService
+
+SOLR_STATUS=$(getServiceStatus SOLR)
+echo "*********************************Checking SOLR status..."
+if ! [[ $SOLR_STATUS == STARTED || $SOLR_STATUS == INSTALLED ]]; then
+        echo "*********************************SOLR is in a transitional state, waiting..."
+        waitForService SOLR
+        echo "*********************************SOLR has entered a ready state..."
+fi
+
+sleep 2
+if [[ $SOLR_STATUS == INSTALLED ]]; then
+        startService SOLR
+else
+        echo "*********************************REGISTRY Service Started..."
+fi
+
+sleep 2
+
 installSchemaRegistryService
 
 sleep 2
@@ -792,6 +854,9 @@ if [[ $NIFI_STATUS == INSTALLED ]]; then
 else
        	echo "*********************************NIFI Service Started..."
 fi
+
+sleep 2
+
 
 echo "********************************* Adding Symbolic Links to Atlas Client..."
 #Add symbolic links to Atlas Hooks
