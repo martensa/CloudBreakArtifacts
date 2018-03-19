@@ -23,6 +23,9 @@ installUtils () {
 	echo "*********************************Installing GIT..."
 	yum install -y git
 	
+	echo " *****************Installing Solr"
+  	yum install -y lucidworks-hdpsearch
+	
 	echo "*********************************Installing Docker..."
 	echo " 				  *****************Installing Docker via Yum..."
 	if [ $(cat /etc/system-release|grep -Po Amazon) == Amazon ]; then
@@ -48,9 +51,6 @@ installUtils () {
 	service docker start
 	chkconfig --add docker
 	chkconfig docker on
-
-  echo " *****************Installing Solr"
-  yum install -y lucidworks-hdpsearch
 
 }
 
