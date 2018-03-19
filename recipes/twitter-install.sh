@@ -23,8 +23,8 @@ installUtils () {
 	echo "*********************************Installing GIT..."
 	yum install -y git
 	
-	echo " *****************Installing Solr"
-  	yum install -y lucidworks-hdpsearch
+	#echo " *****************Installing Solr"
+  #	yum install -y lucidworks-hdpsearch
 	
 	echo "*********************************Installing Docker..."
 	echo " 				  *****************Installing Docker via Yum..."
