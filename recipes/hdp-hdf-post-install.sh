@@ -566,11 +566,11 @@ ambari-server install-mpack --mpack=hdf-ambari-mpack-3.0.1.1-5.tar.gz --verbose
 
 installHDPSearchManagementPack () {
   
-  echo "[main]\nenabled = 0" >> /etc/yum/pluginconf.d/priorities.conf
+  printf "[main]\nenabled = 0" >> /etc/yum/pluginconf.d/priorities.conf
   
-  wget http://public-repo-1.hortonworks.com/HDP-SOLR/hdp-solr-ambari-mp/solr-service-mpack-2.2.9.tar.gz
+  wget http://public-repo-1.hortonworks.com/HDP-SOLR/hdp-solr-ambari-mp/solr-service-mpack-3.0.0.tar.gz
 
-  ambari-server install-mpack --mpack=solr-service-mpack-2.2.9.tar.gz
+  ambari-server install-mpack --mpack=solr-service-mpack-3.0.0.tar.gz
   sleep 2
   ambari-server restart
   waitForAmbari
