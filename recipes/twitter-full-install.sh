@@ -666,7 +666,7 @@ startSolr
 echo "****************Creative Hive Tables"
 createHiveTables
 echo "********************************* Deploying Nifi Template"
-deployTemplateToNifi $ROOT_PATH/SE-demo/Twitter/Twitter_Dashboard.xml TWITTER-Demo
+deployTemplateToNifi $ROOT_PATH/CloudBreakArtifacts/recipes/TWITTER_DEMO_CONTROL/demofiles/Twitter_Dashboard.xml TWITTER-Demo
 echo "********************************* Configuring Nifi Template"
 configureNifiTempate
 
