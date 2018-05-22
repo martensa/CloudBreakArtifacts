@@ -730,7 +730,7 @@ cp -Rf $ROOT_PATH/CloudBreakArtifacts/recipes/MARKET_BASKET_DEMO_CONTROL /var/li
 
 echo "*********************************Install CLICKSTREAM_DEMO_CONTROL service..."
 git clone https://github.com/bkurzman/clickstream_demo.git
-cp -Rf $ROOT_PATH/clickstream/recipes/CLICKSTREAM_DEMO_CONTROL /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/
+cp -Rf $ROOT_PATH/clickstream_demo/recipes/CLICKSTREAM_DEMO_CONTROL /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/
 
 echo "*********************************Install HDF Management Pack..."
 instalHDFManagementPack 
