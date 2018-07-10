@@ -29,25 +29,14 @@ installUtils () {
 		yum install -y docker
 	else
 		echo " 				  *****************Adding Docker Yum Repo..."
-		tee /etc/yum.repos.d/docker.repo <<-'EOF'
-		[dockerrepo]
-		name=Docker Repository
-		baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
-		enabled=1
-		gpgcheck=1
-		gpgkey=https://yum.dockerproject.org/gpg
-		EOF
-		rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-		yum install -y docker-io
+		sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+		sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+		sudo yum install -y docker-ce
 	fi
 	
-	echo " 				  *****************Configuring Docker Permissions..."
-	groupadd docker
-	gpasswd -a yarn docker
 	echo " 				  *****************Registering Docker to Start on Boot..."
-	service docker start
-	chkconfig --add docker
-	chkconfig docker on
+	sudo systemctl start docker
+	sudo systemctl enable docker
 }
 
 waitForAmbari () {
@@ -555,8 +544,8 @@ installDruidService () {
 }
 
 instalHDFManagementPack () {
-	wget http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.0.1.1/tars/hdf_ambari_mp/hdf-ambari-mpack-3.0.1.1-5.tar.gz
-ambari-server install-mpack --mpack=hdf-ambari-mpack-3.0.1.1-5.tar.gz --verbose
+	wget https://s3.amazonaws.com/public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.0.2.0/tars/hdf_ambari_mp/hdf-ambari-mpack-3.0.2.0-76.tar.gz
+	ambari-server install-mpack --mpack=hdf-ambari-mpack-3.0.2.0-76.tar.gz --verbose
 
 	sleep 2
 	ambari-server restart
@@ -586,9 +575,9 @@ getHostByPosition (){
 
 configureAmbariRepos (){
 	tee /etc/yum.repos.d/docker.repo <<-'EOF'
-	[HDF-3.0]
-	name=HDF-3.0
-	baseurl=http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.0.0.0
+	[HDF-3.0.2.0]
+	name=HDF Version - HDF-3.0.2.0
+	baseurl=http://public-repo-1.hortonworks.com/HDF/centos7/3.x/updates/3.0.2.0
 	path=/
 	enabled=1
 	gpgcheck=0
@@ -616,10 +605,8 @@ installMySQL (){
 		service mysqld start
 		chkconfig --levels 3 mysqld on
 	else
-		yum localinstall -y https://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+		yum localinstall -y https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
 		yum install -y mysql-community-server
-		#yum localinstall -y https://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
-#yum install -y mysql-community-server
 		systemctl start mysqld.service
 		systemctl enable mysqld.service
 	fi
