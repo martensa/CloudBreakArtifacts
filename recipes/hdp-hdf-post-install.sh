@@ -540,6 +540,23 @@ enablePhoenix () {
 	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-site hbase.region.server.rpc.scheduler.factory.class org.apache.hadoop.hbase.ipc.PhoenixRpcSchedulerFactory
 	sleep 1
 	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-site hbase.rpc.controllerfactory.class org.apache.hadoop.hbase.ipc.controller.ServerRpcControllerFactory
+	sleep 1
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-env hbase_java_io_tmpdir /hadoopfs/fs1/hbase
+}
+
+configureHiveACID () {
+	echo "*********************************Configuring Hive ACID..."
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.support.concurrency" "true"
+	sleep 1	
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.txn.manager" "org.apache.hadoop.hive.ql.lockmgr.DbTxnManager"
+	sleep 1	
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.exec.dynamic.partition.mode" "nonstrict"
+	sleep 1	
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.enforce.bucketing" "true"
+	sleep 1	
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.compactor.worker.threads" "1"
+	sleep 1	
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.compactor.initiator.on" "true"
 }
 
 fixStorm () {
@@ -604,8 +621,6 @@ sleep 2
 echo "********************************* Enabling Phoenix"
 enablePhoenix
 echo "********************************* Restarting Hbase"
-startService HBASE
-sleep 2
 stopService HBASE
 sleep 2
 startService HBASE
@@ -614,9 +629,19 @@ sleep 2
 echo "********************************* Fix Storm"
 fixStorm
 echo "********************************* Restarting Storm"
+startService STORM
+sleep 2
 stopService STORM
 sleep 2
 startService STORM
+sleep 2
+
+echo "********************************* Configure Hive"
+configureHiveACID
+echo "********************************* Restarting Storm"
+stopService HIVE
+sleep 2
+startService HIVE
 sleep 2
 
 installDruidService
