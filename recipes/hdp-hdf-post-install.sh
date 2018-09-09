@@ -557,6 +557,8 @@ configureHiveACID () {
 	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.compactor.worker.threads" "1"
 	sleep 1	
 	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.compactor.initiator.on" "true"
+	sleep 1
+	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive_txn_acid" "on"
 }
 
 fixStorm () {
