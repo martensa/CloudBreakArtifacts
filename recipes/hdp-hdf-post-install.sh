@@ -10,7 +10,7 @@ installUtils () {
 	ln -s /usr/local/apache-maven-3.5.4 /usr/local/maven
 	cat >> /etc/profile.d/maven.sh <<ENDOF
 export M2_HOME=/usr/local/maven
-export PATH=$M2_HOME/bin:$PATH
+export PATH=/usr/local/maven/bin:$PATH
 ENDOF
 	source /etc/profile.d/maven.sh
 	
@@ -559,7 +559,7 @@ echo "*********************************ROOT PATH IS: $ROOT_PATH"
 export AMBARI_HOST=$(hostname -f)
 echo "*********************************AMABRI HOST IS: $AMBARI_HOST"
 
-export $AMBARI_CREDS=$USERID:$PASSWD
+export AMBARI_CREDS=$USERID:$PASSWD
 export CLUSTER_NAME=$(curl -k -s -u $AMBARI_CREDS -X GET http://$AMBARI_HOST:8080/api/v1/clusters |grep cluster_name|grep -Po ': "(.+)'|grep -Po '[a-zA-Z0-9\-_!?.]+')
 
 if [[ -z $CLUSTER_NAME ]]; then
@@ -604,6 +604,8 @@ sleep 2
 echo "********************************* Enabling Phoenix"
 enablePhoenix
 echo "********************************* Restarting Hbase"
+startService HBASE
+sleep 2
 stopService HBASE
 sleep 2
 startService HBASE
