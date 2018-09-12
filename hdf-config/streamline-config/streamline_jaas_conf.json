@@ -1,3 +1,5 @@
-"properties" : {
-"content" : "\nStreamlineServer {\ncom.sun.security.auth.module.Krb5LoginModule required\nuseKeyTab=true\nkeyTab=\"{{streamline_keytab_path}}\"\nstoreKey=true\nuseTicketCache=false\nserviceName=\"{{streamline_bare_principal}}\"\nprincipal=\"{{streamline_jaas_principal}}\";\n};\nStormClient {\ncom.sun.security.auth.module.Krb5LoginModule required\nuseKeyTab=true\nkeyTab=\"{{streamline_keytab_path}}\"\nstoreKey=true\nuseTicketCache=false\nserviceName=\"nimbus\"\nprincipal=\"{{streamline_jaas_principal}}\";\n};"
+{
+  "properties": {
+    "content": "\nStreamlineServer {\ncom.sun.security.auth.module.Krb5LoginModule required\nuseKeyTab=true\nkeyTab=\"{{streamline_keytab_path}}\"\nstoreKey=true\nuseTicketCache=false\nserviceName=\"{{streamline_bare_principal}}\"\nprincipal=\"{{streamline_jaas_principal}}\";\n};\nStormClient {\ncom.sun.security.auth.module.Krb5LoginModule required\nuseKeyTab=true\nkeyTab=\"{{streamline_keytab_path}}\"\nstoreKey=true\nuseTicketCache=false\nserviceName=\"nimbus\"\nprincipal=\"{{streamline_jaas_principal}}\";\n};\nRegistryClient {\ncom.sun.security.auth.module.Krb5LoginModule required\nuseKeyTab=true\nkeyTab=\"{{streamline_keytab_path}}\"\nstoreKey=true\nuseTicketCache=false\nprincipal=\"{{streamline_jaas_principal}}\";\n};\nClient {\ncom.sun.security.auth.module.Krb5LoginModule required\nuseKeyTab=true\nkeyTab=\"{{streamline_keytab_path}}\"\nstoreKey=true\nuseTicketCache=false\ndebug=true\nprincipal=\"{{streamline_jaas_principal}}\";\n};"
+  }
 }
