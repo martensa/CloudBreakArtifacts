@@ -375,8 +375,12 @@ installNifiService () {
                	echo "*********************************Task Status" $TASKSTATUS
                	sleep 2
        	done
+	
+	sleep 10
+	sudo mkdir /usr/hdf/current/nifi/tmp
+	sudo chmod 777 /usr/hdf/current/nifi/tmp
+	sudo chown nifi:nifi /usr/hdf/current/nifi/tmp
 }
-
 
 waitForNifiServlet () {
        	LOOPESCAPE="false"
