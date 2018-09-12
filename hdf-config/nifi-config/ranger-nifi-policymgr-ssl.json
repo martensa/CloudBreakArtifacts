@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "xasecure.policymgr.clientssl.keystore": "",
+    "owner.for.certificate": "",
+    "xasecure.policymgr.clientssl.truststore.password": "HWDemo123!",
+    "xasecure.policymgr.clientssl.keystore.credential.file": "jceks://file{{credential_file}}",
+    "xasecure.policymgr.clientssl.truststore": "",
+    "xasecure.policymgr.clientssl.truststore.credential.file": "jceks://file{{credential_file}}",
+    "xasecure.policymgr.clientssl.keystore.password": "HWDemo123!"
+  }
+}
