@@ -413,33 +413,29 @@ installDruidService () {
        	echo "*********************************Creating DRUID configuration..."
 
        	# Create and apply configuration
-       	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-broker $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-broker.json
+       	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-broker -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-broker.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-common $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-common.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-common -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-common.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-coordinator $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-coordinator.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-coordinator -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-coordinator.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-env.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-historical $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-historical.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-historical -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-historical.json
+	
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-log4j -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-log4j.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-log4j $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-log4j.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-logrotate -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-logrotate.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-logrotate $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-logrotate.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-middlemanager -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-middlemanager.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-middlemanager $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-middlemanager.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-overlord -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-overlord.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-overlord $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-overlord.json
-		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-router $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-router.json
-		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-superset-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-superset-env.json
-		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME druid-superset $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-superset.json
-		
-		export HOST1=$(getHostByPosition 1)
-		export HOST2=$(getHostByPosition 2)
-		export HOST3=$(getHostByPosition 3)			
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c druid-router -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-router.json
+	
+	export HOST1=$(getHostByPosition 1)
+	export HOST2=$(getHostByPosition 2)
+	export HOST3=$(getHostByPosition 3)			
 		
        	echo "*********************************Adding DRUID BROKER role to Host..."
        	# Add DRUID BROKER role to Host
@@ -521,17 +517,17 @@ getHostByPosition (){
 
 enablePhoenix () {
 	echo "*********************************Enabling Phoenix..."
-	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-site phoenix.functions.allowUserDefinedFunctions true
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c hbase-site -k phoenix.functions.allowUserDefinedFunctions -v true
 	sleep 1
-	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-site hbase.defaults.for.version.skip true
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c hbase-site -k hbase.defaults.for.version.skip -v true
 	sleep 1
-	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-site hbase.regionserver.wal.codec org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c hbase-site -k hbase.regionserver.wal.codec -v org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec
 	sleep 1
-	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-site hbase.region.server.rpc.scheduler.factory.class org.apache.hadoop.hbase.ipc.PhoenixRpcSchedulerFactory
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c hbase-site -k hbase.region.server.rpc.scheduler.factory.class -v org.apache.hadoop.hbase.ipc.PhoenixRpcSchedulerFactory
 	sleep 1
-	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-site hbase.rpc.controllerfactory.class org.apache.hadoop.hbase.ipc.controller.ServerRpcControllerFactory
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c hbase-site -k hbase.rpc.controllerfactory.class -v org.apache.hadoop.hbase.ipc.controller.ServerRpcControllerFactory
 	sleep 1
-	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-env hbase_java_io_tmpdir /hadoopfs/fs1/hbase
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c hbase-env -k hbase_java_io_tmpdir -v /hadoopfs/fs1/hbase
 }
 
 
