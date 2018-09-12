@@ -1,7 +1,9 @@
-"properties" : {
-"druid.port" : "8888",
-"druid.router.http.numConnections" : "20",
-"druid.router.tierToBrokerMap" : "{\"_default_tier\":\"druid/broker\"}",
-"druid.server.http.numThreads" : "50",
-"druid.service" : "druid/router"
+{
+  "properties": {
+    "druid.service": "druid/router",
+    "druid.router.tierToBrokerMap": "{\"_default_tier\":\"druid/broker\"}",
+    "druid.server.http.numThreads": "50",
+    "druid.port": "8888",
+    "druid.router.http.numConnections": "20"
+  }
 }
