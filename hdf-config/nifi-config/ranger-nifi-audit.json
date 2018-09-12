@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "xasecure.audit.destination.solr.zookeepers": "NONE",
+    "xasecure.audit.destination.log4j": "false",
+    "xasecure.audit.destination.solr.urls": "",
+    "xasecure.audit.destination.solr": "false",
+    "xasecure.audit.destination.solr.batch.filespool.dir": "/tmp/audit/solr/spool",
+    "xasecure.audit.destination.log4j.logger": "ranger_audit_logger",
+    "xasecure.audit.is.enabled": "true"
+  }
+}
