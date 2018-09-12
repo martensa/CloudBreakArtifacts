@@ -195,11 +195,11 @@ installSchemaRegistryService () {
        	echo "*********************************Creating REGISTRY configuration..."
 
        	# Create and apply configuration
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME registry-common $ROOT_PATH/CloudBreakArtifacts/hdf-config/registry-config/registry-common.json
+		/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c registry-common -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/registry-config/registry-common.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME registry-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/registry-config/registry-env.json
+		/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c registry-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/registry-config/registry-env.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME registry-log4j $ROOT_PATH/CloudBreakArtifacts/hdf-config/registry-config/registry-log4j.json
+		/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c registry-log4j -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/registry-config/registry-log4j.json
 		
        	echo "*********************************Adding REGISTRY SERVER role to Host..."
        	# Add REGISTRY_SERVER role to Ambari Host
@@ -246,13 +246,13 @@ installStreamlineService () {
        	echo "*********************************Creating STREAMLINE configuration..."
 
        	# Create and apply configuration
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME streamline-common $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-common.json
+		/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c streamline-common -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-common.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME streamline-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-env.json
+		/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c streamline-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME streamline-log4j $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-log4j.json
+		/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c streamline-log4j -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-log4j.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME streamline_jaas_conf $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline_jaas_conf.json
+		/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c streamline_jaas_conf -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline_jaas_conf.json
 		
        	echo "*********************************Adding STREAMLINE SERVER role to Host..."
        	# Add STREAMLINE SERVER role to Ambari Host
@@ -534,32 +534,6 @@ enablePhoenix () {
 	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hbase-env hbase_java_io_tmpdir /hadoopfs/fs1/hbase
 }
 
-#configureHiveACID () {
-#	echo "*********************************Configuring Hive ACID..."
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.support.concurrency" "true"
-#	sleep 1	
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.txn.manager" "org.apache.hadoop.hive.ql.lockmgr.DbTxnManager"
-#	sleep 1	
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.exec.dynamic.partition.mode" "nonstrict"
-#	sleep 1	
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.enforce.bucketing" "true"
-#	sleep 1	
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.compactor.worker.threads" "1"
-#	sleep 1	
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive.compactor.initiator.on" "true"
-#	sleep 1
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME hive-site "hive_txn_acid" "on"
-#}
-
-#fixStorm () {
-#	echo "*********************************Fixing Storm..."
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME storm-env storm.atlas.hook false
-#	sleep 1
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME storm-site nimbus.childopts "-Xmx1024m _JAAS_PLACEHOLDER"
-#	sleep 1
-#	/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME storm-site supervisor.childopts "-Xmx256m _JAAS_PLACEHOLDER -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port={{jmxremote_port}}"
-#}
-
 
 
 export ROOT_PATH=~
@@ -601,7 +575,8 @@ sed -r -i 's;\{\{mysql_host\}\};'$AMBARI_HOST';' $ROOT_PATH/CloudBreakArtifacts/
 sed -r -i 's;\{\{registry_host\}\};'$AMBARI_HOST';' $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-common.json
 sed -r -i 's;\{\{superset_host\}\};'$AMBARI_HOST';' $ROOT_PATH/CloudBreakArtifacts/hdf-config/streamline-config/streamline-common.json
 sed -r -i 's;\{\{mysql_host\}\};'$AMBARI_HOST';' $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-common.json
-sed -r -i 's;\{\{mysql_host\}\};'$AMBARI_HOST';' $ROOT_PATH/CloudBreakArtifacts/hdf-config/druid-config/druid-superset.json
+sed -r -i 's;\{\{ambari_host\}\};'$AMBARI_HOST';' $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-ambari-ssl-config.json
+
 
 echo "*********************************Install Utilities..."
 installUtils
@@ -617,90 +592,72 @@ sleep 2
 startService HBASE
 sleep 2
 
-#echo "********************************* Fix Storm"
-#fixStorm
-#echo "********************************* Restarting Storm"
-#startService STORM
-#sleep 2
-#stopService STORM
-#sleep 2
-#startService STORM
-#sleep 2
+installDruidService
+sleep 2
+DRUID_STATUS=$(getServiceStatus DRUID)
+echo "*********************************Checking DRUID status..."
+if ! [[ $DRUID_STATUS == STARTED || $DRUID_STATUS == INSTALLED ]]; then
+       	echo "*********************************DRUID is in a transitional state, waiting..."
+       	waitForService DRUID
+       	echo "*********************************DRUID has entered a ready state..."
+fi
+sleep 2
+if [[ $DRUID_STATUS == INSTALLED ]]; then
+       	startService DRUID
+else
+       	echo "*********************************DRUID Service Started..."
+fi
+sleep 2
 
-#echo "********************************* Configure Hive"
-#configureHiveACID
-#echo "********************************* Restarting Hive"
-#stopService HIVE
-#sleep 2
-#startService HIVE
-#sleep 2
+installSchemaRegistryService
+sleep 2
+REGISTRY_STATUS=$(getServiceStatus REGISTRY)
+echo "*********************************Checking REGISTRY status..."
+if ! [[ $REGISTRY_STATUS == STARTED || $REGISTRY_STATUS == INSTALLED ]]; then
+       	echo "*********************************REGISTRY is in a transitional state, waiting..."
+       	waitForService REGISTRY
+       	echo "*********************************REGISTRY has entered a ready state..."
+fi
+sleep 2
+if [[ $REGISTRY_STATUS == INSTALLED ]]; then
+       	startService REGISTRY
+else
+       	echo "*********************************REGISTRY Service Started..."
+fi
+sleep 2
 
-#installDruidService
-#sleep 2
-#DRUID_STATUS=$(getServiceStatus DRUID)
-#echo "*********************************Checking DRUID status..."
-#if ! [[ $DRUID_STATUS == STARTED || $DRUID_STATUS == INSTALLED ]]; then
-#       	echo "*********************************DRUID is in a transitional state, waiting..."
-#       	waitForService DRUID
-#       	echo "*********************************DRUID has entered a ready state..."
-#fi
-#sleep 2
-#if [[ $DRUID_STATUS == INSTALLED ]]; then
-#       	startService DRUID
-#else
-#       	echo "*********************************DRUID Service Started..."
-#fi
-#sleep 2
+installStreamlineService
+sleep 2
+STREAMLINE_STATUS=$(getServiceStatus STREAMLINE)
+echo "*********************************Checking STREAMLINE status..."
+if ! [[ $STREAMLINE_STATUS == STARTED || $STREAMLINE_STATUS == INSTALLED ]]; then
+       	echo "*********************************STREAMLINE is in a transitional state, waiting..."
+       	waitForService STREAMLINE
+       	echo "*********************************STREAMLINE has entered a ready state..."
+fi
+sleep 2
+if [[ $STREAMLINE_STATUS == INSTALLED ]]; then
+       	startService STREAMLINE
+else
+       	echo "*********************************STREAMLINE Service Started..."
+fi
+sleep 2
 
-#installSchemaRegistryService
-#sleep 2
-#REGISTRY_STATUS=$(getServiceStatus REGISTRY)
-#echo "*********************************Checking REGISTRY status..."
-#if ! [[ $REGISTRY_STATUS == STARTED || $REGISTRY_STATUS == INSTALLED ]]; then
-#       	echo "*********************************REGISTRY is in a transitional state, waiting..."
-#       	waitForService REGISTRY
-#       	echo "*********************************REGISTRY has entered a ready state..."
-#fi
-#sleep 2
-#if [[ $REGISTRY_STATUS == INSTALLED ]]; then
-#       	startService REGISTRY
-#else
-#       	echo "*********************************REGISTRY Service Started..."
-#fi
-#sleep 2
-
-#installStreamlineService
-#sleep 2
-#STREAMLINE_STATUS=$(getServiceStatus STREAMLINE)
-#echo "*********************************Checking STREAMLINE status..."
-#if ! [[ $STREAMLINE_STATUS == STARTED || $STREAMLINE_STATUS == INSTALLED ]]; then
-#       	echo "*********************************STREAMLINE is in a transitional state, waiting..."
-#       	waitForService STREAMLINE
-#       	echo "*********************************STREAMLINE has entered a ready state..."
-#fi
-#sleep 2
-#if [[ $STREAMLINE_STATUS == INSTALLED ]]; then
-#       	startService STREAMLINE
-#else
-#       	echo "*********************************STREAMLINE Service Started..."
-#fi
-#sleep 2
-
-#installNifiService
-#sleep 2
-#NIFI_STATUS=$(getServiceStatus NIFI)
-#echo "*********************************Checking NIFI status..."
-#if ! [[ $NIFI_STATUS == STARTED || $NIFI_STATUS == INSTALLED ]]; then
-#       	echo "*********************************NIFI is in a transitional state, waiting..."
-#       	waitForService NIFI
-#       	echo "*********************************NIFI has entered a ready state..."
-#fi
-#sleep 2
-#if [[ $NIFI_STATUS == INSTALLED ]]; then
-#       	startServiceAndComplete NIFI
-#else
-#       	echo "*********************************NIFI Service Started..."
-#fi
-#sleep 2
+installNifiService
+sleep 2
+NIFI_STATUS=$(getServiceStatus NIFI)
+echo "*********************************Checking NIFI status..."
+if ! [[ $NIFI_STATUS == STARTED || $NIFI_STATUS == INSTALLED ]]; then
+       	echo "*********************************NIFI is in a transitional state, waiting..."
+       	waitForService NIFI
+       	echo "*********************************NIFI has entered a ready state..."
+fi
+sleep 2
+if [[ $NIFI_STATUS == INSTALLED ]]; then
+       	startServiceAndComplete NIFI
+else
+       	echo "*********************************NIFI Service Started..."
+fi
+sleep 2
 
 exit 0
