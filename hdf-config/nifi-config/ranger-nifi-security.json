@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "ranger.plugin.nifi.service.name": "{{repo_name}}",
+    "ranger.plugin.nifi.policy.rest.ssl.config.file": "ranger-policymgr-ssl.xml",
+    "ranger.plugin.nifi.policy.source.impl": "org.apache.ranger.admin.client.RangerAdminRESTClient",
+    "ranger.plugin.nifi.policy.rest.client.read.timeoutMs": "30000",
+    "ranger.plugin.nifi.policy.rest.client.connection.timeoutMs": "120000",
+    "ranger.plugin.nifi.policy.cache.dir": "/tmp",
+    "ranger.plugin.nifi.policy.pollIntervalMs": "30000",
+    "ranger.plugin.nifi.policy.rest.url": "{{policymgr_mgr_url}}"
+  }
+}
