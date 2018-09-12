@@ -309,32 +309,40 @@ installNifiService () {
        	echo "*********************************Creating NIFI configuration..."
 
        	# Create and apply configuration
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-ambari-config $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-ambari-config.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-ambari-config -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-ambari-config.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-ambari-ssl-config $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-ambari-ssl-config.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-ambari-ssl-config -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-ambari-ssl-config.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-authorizers-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-authorizers-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-authorizers-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-authorizers-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-bootstrap-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-bootstrap-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-bootstrap-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-bootstrap-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-bootstrap-notification-services-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-bootstrap-notification-services-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-bootstrap-notification-services-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-bootstrap-notification-services-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-flow-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-flow-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-flow-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-flow-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-login-identity-providers-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-login-identity-providers-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-jaas-conf -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-jaas-conf.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-node-logback-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-node-logback-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-login-identity-providers-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-login-identity-providers-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-properties $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-properties.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-node-logback-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-node-logback-env.json
 
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-state-management-env $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-state-management-env.json
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-properties -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-properties.json
+
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-state-management-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-state-management-env.json
 		
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-jaas-conf $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-jaas-conf.json
-				
-		/var/lib/ambari-server/resources/scripts/configs.sh -u $USERID -p $PASSWD set $AMBARI_HOST $CLUSTER_NAME nifi-logsearch-conf $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-logsearch-conf.json
-		
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c nifi-toolkit-env -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/nifi-toolkit-env.json
+
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c ranger-nifi-audit -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/ranger-nifi-audit.json
+
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c ranger-nifi-plugin-properties -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/ranger-nifi-plugin-properties.json
+
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c ranger-nifi-policymgr-ssl -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/ranger-nifi-policymgr-ssl.json
+	
+	/var/lib/ambari-server/resources/scripts/configs.py -u $USERID -p $PASSWD -a set -l $AMBARI_HOST -n $CLUSTER_NAME -c ranger-nifi-security -f $ROOT_PATH/CloudBreakArtifacts/hdf-config/nifi-config/ranger-nifi-security.json
+
        	echo "*********************************Adding NIFI MASTER role to Host..."
        	# Add NIFI Master role to Ambari Host
        	curl -k -s -u $AMBARI_CREDS -H "X-Requested-By:ambari" -i -X POST http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER_NAME/hosts/$AMBARI_HOST/host_components/NIFI_MASTER
