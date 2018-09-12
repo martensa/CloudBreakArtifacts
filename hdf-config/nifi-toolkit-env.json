@@ -1,0 +1,5 @@
+{
+  "properties": {
+    "nifi_toolkit_java_options": "-Xms128m -Xmx256m"
+  }
+}
