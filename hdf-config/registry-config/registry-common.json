@@ -1,15 +1,24 @@
-"properties" : {
-"adminPort" : "7789",
-"database_name" : "registry",
-"jar.storage" : "/hdf/registry",
-"port" : "7788",
-"registry.schema.cache.expiry.interval" : "3600",
-"registry.schema.cache.size" : "10000",
-"registry.storage.connector.connectURI" : "jdbc:mysql://{{mysql_host}}:3306/registry",
-"registry.storage.connector.password" : "registry",
-"registry.storage.connector.user" : "registry",
-"registry.storage.query.timeout" : "30",
-"registry.storage.type" : "mysql",
-"jar.storage.type" : "local",
-"jar.storage.hdfs.url" : "hdfs://localhost:8020/user"
+{
+  "properties": {
+    "registry.storage.db.hostname": "{{mysql_host}}:3306",
+    "registry.storage.connector.connectURI": "jdbc:mysql://{{mysql_host}}:3306/registry",
+    "registry.storage.type": "mysql",
+    "registry.schema.cache.expiry.interval": "3600",
+    "db_root_jdbc_url": "jdbc:mysql://{{mysql_host}}:3306",
+    "httpProxyUsername": "",
+    "database_name": "registry",
+    "registry.storage.query.timeout": "30",
+    "jar.storage.type": "local",
+    "registry.storage.connector.user": "registry",
+    "port": "7788",
+    "db_root_user": "root",
+    "httpProxyPassword": "",
+    "jar.storage.hdfs.url": "hdfs://localhost:9090",
+    "httpProxyServer": "",
+    "db_root_password": "",
+    "adminPort": "7789",
+    "registry.storage.connector.password": "registry",
+    "jar.storage": "/hdf/registry",
+    "registry.schema.cache.size": "10000"
+  }
 }
