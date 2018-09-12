@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "nifi.ssl.truststoreType": "",
+    "REPOSITORY_CONFIG_USERNAME": "{{ranger_admin_username}}",
+    "nifi.ssl.keystore": "",
+    "nifi.ssl.truststore": "",
+    "nifi.ssl.keystorePassword": "",
+    "nifi.authentication": "NONE",
+    "ranger-nifi-plugin-enabled": "No",
+    "nifi.ssl.truststorePassword": "",
+    "owner.for.certificate": "",
+    "nifi.ssl.keystoreType": "",
+    "policy_user": "nifi",
+    "REPOSITORY_CONFIG_PASSWORD": "HWDemo123!"
+  }
+}
